@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>박스 피하기 - 모드 선택</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pretendard:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .menu-wrap{ max-width: 1000px; margin: 0 auto; display: grid; gap: 18px; padding:16px; }
+    .title{ font-family: "Press Start 2P", system-ui; font-size: clamp(22px, 3.6vw, 40px); text-align:center; color:#0f172a; letter-spacing:.02em; }
+    .subtitle{ text-align:center; color:#64748b; margin-top:-6px; }
+    .mode-grid{ display:grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap:12px; }
+    .mode-btn{ padding:16px 10px; border:1px solid #d7ddea; border-radius:12px; background:#fff; box-shadow: 0 6px 18px rgba(17,17,17,.06); cursor:pointer; transition: all .15s ease; text-align:center; }
+    .mode-btn:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(17,17,17,.10); }
+    .mode-btn.active{ outline:2px solid #3b82f6; box-shadow: 0 8px 20px rgba(59,130,246,.25); }
+    .mode-emoji{ font-size: 28px; display:block; margin-bottom:8px; }
+    .mode-name{ font-weight:800; color:#0f172a; }
+    .desc-card{ padding:18px; border:1px solid #d7ddea; border-radius:12px; background:linear-gradient(180deg,#fff,#f7f9fc); box-shadow: 0 6px 18px rgba(17,17,17,.06); min-height: 140px; }
+    .desc-card h3{ margin:0 0 8px; font-size:18px; color:#111; }
+    .desc-card p{ margin:0 0 6px; color:#475569; }
+    .desc-card ul{ margin:8px 0 0 18px; color:#475569; }
+    .actions{ display:flex; justify-content:center; gap:10px; }
+    .btn.big{ padding:14px 18px; font-weight:800; border-radius:12px; }
+    .btn.primary{ background:#3b82f6; color:#fff; border:none; }
+    .btn[disabled]{ opacity:.55; cursor:not-allowed }
+    .guide{ padding:18px; border:1px dashed #d7ddea; border-radius:12px; background:#fff; color:#475569; }
+    .guide h3{ margin:0 0 10px; font-size:16px; color:#0f172a; }
+    .guide ul{ margin:8px 0 0 18px; }
+  </style>
+</head>
+<body>
+  <div class="viewport">
+    <main class="menu-wrap">
+      <div class="title">박스 피하기</div>
+      <div class="subtitle">모드를 선택하세요</div>
+
+      <section class="mode-grid" id="modeGrid">
+        <button class="mode-btn" data-mode="default"><span class="mode-emoji">🎯</span><span class="mode-name">기본 모드</span></button>
+        <button class="mode-btn" data-mode="up"><span class="mode-emoji">⬆️</span><span class="mode-name">업모드</span></button>
+        <button class="mode-btn" data-mode="meteor"><span class="mode-emoji">☄️</span><span class="mode-name">메테오</span></button>
+        <button class="mode-btn" data-mode="leaf"><span class="mode-emoji">🍂</span><span class="mode-name">낙엽</span></button>
+        <button class="mode-btn" data-mode="chaos"><span class="mode-emoji">🌀</span><span class="mode-name">정신없는 모드</span></button>
+      </section>
+
+      <section class="desc-card">
+        <h3 id="modeTitle">모드를 선택하면 설명이 표시됩니다</h3>
+        <div id="modeDesc" style="color:#64748b">상단의 모드 버튼을 눌러 상세 설명을 확인하세요.</div>
+      </section>
+
+      <div class="actions">
+        <button id="btnStart" class="btn big primary" disabled>게임 시작</button>
+      </div>
+
+      <section class="guide">
+        <h3>게임 설명</h3>
+        <ul>
+          <li>목표: 화면 아래 캐릭터로 <b>장애물(박스/메테오/기둥/낙엽)</b>을 피해서 최대한 오래 버티세요.</li>
+          <li>조작: ← → 또는 A/D 키로 좌우 이동합니다.</li>
+          <li>점수: <b>0.5초마다 +1점</b>. <b>5초마다 코인</b>이 떨어지며 먹으면 <b>+10점</b>이 떠오릅니다.</li>
+          <li>난이도: 시간이 지날수록 생성 간격이 짧아지고 낙하 속도가 빨라져 점점 <b>빡세집니다</b>.</li>
+          <li>팁: 빈 칸을 미리 보고 이동하세요. 코인은 욕심내다 부딪히지 않게 신중히!</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/menu.js"></script>
+</body>
+</html>

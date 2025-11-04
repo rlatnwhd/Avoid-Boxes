@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>박스 피하기 - 게임</title>
+  <!-- 클래식 아케이드 느낌의 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pretendard:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="viewport">
+    <!-- 상단 제목 제거 -->
+    <main class="layout">
+      <!-- 좌측 패널 -->
+      <aside class="side-panel left">
+        <section class="card">
+          <h2>게임 설명</h2>
+          <p>상하좌우로 움직이며 떨어지는 박스를 피하세요.</p>
+          <ul class="hint">
+            <li>← → 혹은 A/D: 좌우 이동</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h2>목표</h2>
+          <p>최대한 오래 생존하세요!</p>
+        </section>
+      </aside>
+
+      <!-- 중앙: 게임 스테이지 -->
+      <section class="stage-wrap">
+        <div class="stage-topbar">
+          <div class="pill soft"><span>시간</span><strong id="ui-time">0.0초</strong></div>
+          <div class="pill"><span>점수</span><strong id="ui-score">0</strong></div>
+          <div class="pill"><span>목숨</span><strong id="ui-lives">1</strong></div>
+        </div>
+
+        <div id="game-stage" class="bezel">
+          <div class="scale-box">
+            <canvas id="gameCanvas" width="480" height="800"></canvas>
+          </div>
+          <div id="countdown" class="countdown hidden" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- 우측 패널 -->
+      <aside class="side-panel right">
+        <section class="card">
+          <h2>컨트롤</h2>
+          <button id="btnRestart" class="btn primary wide">⟲ 재시작</button>
+          <!-- 추가: 메인 화면으로 -->
+          <button id="btnToMenu" class="btn wide">⌂ 메인 화면</button>
+        </section>
+
+        <!-- 숨김 영역: 기존 모드 버튼(DOM 유지) -->
+        <section style="display:none" aria-hidden="true">
+          <button id="btnUpMode"></button>
+          <button id="btnMeteorMode"></button>
+          <button id="btnLeafMode"></button>
+        </section>
+        <section class="card muted"></section>
+      </aside>
+    </main>
+  </div>
+
+  <!-- 게임 로직 -->
+  <script src="js/avoid_boxes.js"></script>
+  <!-- 모드 자동 시작 런처 -->
+  <script src="js/launcher.js"></script>
+  <!-- UI/레이아웃 스크립트 -->
+  <script src="js/ui.js"></script>
+  <!-- 모드별 재시작 라우터 -->
+  <script src="js/restart_router.js"></script>
+</body>
+</html>
